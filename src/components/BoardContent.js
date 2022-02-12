@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { edit, remove } from '../modules/boardSlice';
  
 function BoardContent() {
-    const { selectRowData } = useSelector(state => state.boardSlice)
+    const selectRowData  = useSelector(state => state.board)
     const [title, setTitle] = useState(selectRowData.title)
     const [content, setContent] = useState(selectRowData.content)
 

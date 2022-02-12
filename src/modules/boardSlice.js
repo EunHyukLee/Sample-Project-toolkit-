@@ -26,26 +26,27 @@ export const boardSlice = createSlice({
         }
         },
         select: (state, action) => {
-            return(
+            return{
             state,
-            state.inputData = state.inputData.find(row => row.id === action.payload.id))
+            inputData: state.inputData.find(row => row.id === action.payload.id)
+        }
         },
         edit: (state, action) => {
-            return(
+            return{
             state,
-            state.inputData = state.inputData.map(row =>
+            inputData: state.inputData.map(row =>
                 row.id === action.payload.id ?
                 {...action.payload} : row
             ),
-            state.selectRowData = {}
-            )},
+            selectRowData: {}
+        }},
         remove: (state, action) => {
-            return(
-            state.lastId = state.lastId === action.inputData.id ? state.lastId - 1 : state.lastId,
-            state.nputData = state.inputData.filter(row =>
+            return{
+            lastId: state.lastId === action.inputData.id ? state.lastId - 1 : state.lastId,
+            nputData: state.inputData.filter(row =>
                 row.id != action.payload.id),
-            state.selectRowData = {}
-            )}
+            selectRowData: {}
+        }}
     },
     extraReducers: {}
 })
