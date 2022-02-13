@@ -27,13 +27,13 @@ export const boardSlice = createSlice({
         },
         select: (state, action) => {
             return{
-            state,
-            inputData: state.inputData.find(row => row.id === action.payload.id)
+            ...state,
+            selectRowData: state.inputData.find(row => row.id === action.payload)
         }
         },
         edit: (state, action) => {
             return{
-            state,
+            ...state,
             inputData: state.inputData.map(row =>
                 row.id === action.payload.id ?
                 {...action.payload} : row
@@ -42,8 +42,8 @@ export const boardSlice = createSlice({
         }},
         remove: (state, action) => {
             return{
-            lastId: state.lastId === action.inputData.id ? state.lastId - 1 : state.lastId,
-            nputData: state.inputData.filter(row =>
+            lastId: state.lastId === action.payload ? state.lastId - 1 : state.lastId,
+            inputData: state.inputData.filter(row =>
                 row.id != action.payload.id),
             selectRowData: {}
         }}
